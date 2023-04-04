@@ -46,11 +46,26 @@
 
 @layer components {
 
-  .outfade-hero {
-    background: linear-gradient(to right, #ebffeb, #ebffeb, #ebffeb, #ebffeb, transparent);
+  @keyframes btn-trans {
+    0% {
+      transform: translateX(0px)
+    }
+    25% {
+      transform: translateX(13px)
+    }
+    75% {
+      transform: translateX(-3px)
+    }
+    100% {
+      transform: translateX(0px)
+    }
+  }
+
+  .btn-hov:hover .btn-arr-right {
+    animation: btn-trans 1s linear infinite;
   }
 
   .outfade-loc {
-    background: linear-gradient(to left, #ebffeb, #ebffeb,  #ebffeb, transparent);
+    background: linear-gradient(to left, #ebffeb, #ebffeb, #ebffeb, transparent);
   }
 }
