@@ -1,3 +1,4 @@
+import About from '@/source/components/about/About';
 import Navbar from '@/source/components/general/Navbar';
 import Hero from '@/source/components/hero/Hero';
 import { createClient } from 'next-sanity';
@@ -13,9 +14,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#E3DDFF"></meta>
       </Head>
-      <main className='font-body bg-mainBg text-darkText text-base md:text-xl z-20 min-h-screen flex flex-col font-medium max-w-[1800px] mx-auto overflow-hidden'>
+      <main className='font-body bg-mainBg text-darkText text-base md:text-xl z-20 min-h-screen flex flex-col font-normal max-w-[1800px] mx-auto overflow-hidden'>
         <Navbar />
         <Hero />
+        <About />
         <div className="py-60"></div>
       </main>
     </>
