@@ -19,7 +19,7 @@ const Navbar = () => {
 
 	return (
 		<>
-			<nav id="top" className="flex w-full justify-between bg-[#ffffff05] border-b border-[#ffffff4d] xl:gap-0 gap-2 relative backdrop-blur-xl px-6 md:px-12 xl:px-20 py-4 sm:py-5 lg:py-6">
+			<nav id="home" className="flex w-full justify-between bg-[#ffffff05] border-b border-[#ffffff4d] xl:gap-0 gap-2 relative backdrop-blur-xl px-6 md:px-12 xl:px-20 py-4 sm:py-5 lg:py-6">
 				<div className="flex-1 xl:flex-initial flex">
 					<h1 className="italic text-3xl font-playfair font-medium flex items-center">The Sapphire Plaza</h1>
 				</div>

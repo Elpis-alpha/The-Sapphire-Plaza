@@ -5,7 +5,7 @@ import { scrollHandler } from "@/source/controllers/SpecialCtrl"
 
 const Hero = () => {
 	return (
-		<section id="home" className="w-full">
+		<section className="w-full">
 			<div className="px-6 md:px-12 xl:px-20 z-20 sm:text-center absolute top-0 left-0 right-0 bottom-0 w-full h-full text-lightText flex">
 				<div className="flex flex-col md:gap-16 sm:gap-10 gap-8 w-full lg:w-[90%] xl:w-[80%] m-auto max-w-[950px]">
 					<h2 className="font-playfair text-base ssm:text-lg smm:text-xl sm:text-2xl lg:text-3xl">GET LUXURY AND COMFORT</h2>
