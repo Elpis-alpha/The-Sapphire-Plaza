@@ -5,3 +5,9 @@ type BSelectType = {
 }
 
 type activeMenutype = "breakfast" | "soup" | "grill" | "pasta" | "pizza" | "drink"
+
+type InputType = {
+	label: string
+	type: HTMLInputTypeAttribute 
+	placeholder: string
+}

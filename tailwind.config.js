@@ -28,6 +28,7 @@ module.exports = {
       darkText: '#191923',
       lightText: '#E3DDFF',
       linkHover: '#2B2644',
+      inputOutline: '#4226ce',
       darkOverlay: '#00000026',
     },
     fontFamily: {

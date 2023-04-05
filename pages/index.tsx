@@ -11,73 +11,73 @@ import { v4 } from "uuid";
 export default function Home() {
   const [roomType, setRoomType] = useState("")
   const rooms: any = [
-		{
-			_id: v4(),
-			name: "Master Bedroom",
-			rate: "$300/night",
-			image: "/rooms/1.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Couple Simple Room",
-			rate: "$150/night",
-			image: "/rooms/2.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Luxe Room",
-			rate: "$700/night",
-			image: "/rooms/3.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Kids Bedroom",
-			rate: "$100/night",
-			image: "/rooms/4.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Family Luxe",
-			rate: "$500/night",
-			image: "/rooms/5.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Premium Room",
-			rate: "$180/night",
-			image: "/rooms/6.jpg"
-		},
-		{
-			_id: v4(),
-			name: "King Room",
-			rate: "$300/night",
-			image: "/rooms/7.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Queen Bedroom",
-			rate: "$200/night",
-			image: "/rooms/8.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Studio Bedroom",
-			rate: "$450/night",
-			image: "/rooms/9.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Studio Bedroom",
-			rate: "$450/night",
-			image: "/rooms/9.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Studio Bedroom",
-			rate: "$450/night",
-			image: "/rooms/9.jpg"
-		},
-	]
+    {
+      _id: v4(),
+      name: "Master Bedroom",
+      rate: "$300/night",
+      image: "/rooms/1.jpg"
+    },
+    {
+      _id: v4(),
+      name: "Couple Simple Room",
+      rate: "$150/night",
+      image: "/rooms/2.jpg"
+    },
+    {
+      _id: v4(),
+      name: "Luxe Room",
+      rate: "$700/night",
+      image: "/rooms/3.jpg"
+    },
+    {
+      _id: v4(),
+      name: "Kids Bedroom",
+      rate: "$100/night",
+      image: "/rooms/4.jpg"
+    },
+    {
+      _id: v4(),
+      name: "Family Luxe",
+      rate: "$500/night",
+      image: "/rooms/5.jpg"
+    },
+    {
+      _id: v4(),
+      name: "Premium Room",
+      rate: "$180/night",
+      image: "/rooms/6.jpg"
+    },
+    {
+      _id: v4(),
+      name: "King Room",
+      rate: "$300/night",
+      image: "/rooms/7.jpg"
+    },
+    {
+      _id: v4(),
+      name: "Queen Bedroom",
+      rate: "$200/night",
+      image: "/rooms/8.jpg"
+    },
+    {
+      _id: v4(),
+      name: "Studio Bedroom",
+      rate: "$450/night",
+      image: "/rooms/9.jpg"
+    },
+    {
+      _id: v4(),
+      name: "Studio Bedroom",
+      rate: "$450/night",
+      image: "/rooms/9.jpg"
+    },
+    {
+      _id: v4(),
+      name: "Studio Bedroom",
+      rate: "$450/night",
+      image: "/rooms/9.jpg"
+    },
+  ]
   return (
     <>
       <Head>
@@ -92,7 +92,7 @@ export default function Home() {
         <Hero />
         <About />
         <Rooms rooms={rooms} setRoomType={setRoomType} />
-        <Book />
+        <Book rooms={rooms} roomType={roomType} setRoomType={setRoomType} />
         <div className="py-60"></div>
       </main>
     </>
