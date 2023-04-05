@@ -93,6 +93,7 @@ export default function Home() {
         <About />
         <Rooms rooms={rooms} setRoomType={setRoomType} />
         <Book rooms={rooms} roomType={roomType} setRoomType={setRoomType} />
+        
         <div className="py-60"></div>
       </main>
     </>

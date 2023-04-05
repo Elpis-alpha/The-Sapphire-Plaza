@@ -54,7 +54,6 @@ const Book = ({ roomType, rooms, setRoomType }: { roomType: string, rooms: any[]
 			});
 	};
 
-
 	return (
 		<section id="book" className="px-6 md:px-12 xl:px-20 w-full pt-32 flex flex-col gap-10 items-center justify-between">
 			<div className="flex-1 flex flex-col items-center justify-between w-full">
@@ -156,6 +155,14 @@ const Book = ({ roomType, rooms, setRoomType }: { roomType: string, rooms: any[]
 						id="hotel-check-out" name="hotel-check-out"
 						type="date"
 						min={minCheckOut}
+					/>
+				</div>
+				<div className="w-full">
+					<label className="block font-semibold mb-2" htmlFor="hotel-anything">Anything Else?</label>
+					<textarea
+						className="shadow-sm appearance-none border-none bg-white bg-opacity-30 rounded w-full py-4 px-4 outline-inputOutline h-48"
+						required
+						id="hotel-anything" name="hotel-anything"
 					/>
 				</div>
 				<div className="w-full">
