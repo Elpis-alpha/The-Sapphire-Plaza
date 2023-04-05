@@ -24,8 +24,8 @@ const About = () => {
 					options and state-of-the-art facilities. Come and discover the finest in
 					luxury hospitality at The Sapphire Plaza.
 				</p>
-				<Link href="/#about" onClick={scrollHandler} className="px-5 py-3 sm:px-6 sm:py-4 bg-otherBg text-lightText flex items-center gap-2 btn-hov mt-7">
-					<span>Explore Now</span>
+				<Link href="/#rooms" onClick={scrollHandler} className="px-5 py-3 sm:px-6 sm:py-4 bg-otherBg text-lightText flex items-center gap-2 btn-hov mt-7">
+					<span>Our Rooms</span>
 					<span className="btn-arr-right"><FaArrowRight /></span>
 				</Link>
 			</div>

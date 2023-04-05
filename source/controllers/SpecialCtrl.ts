@@ -687,9 +687,9 @@ export const createQueryString = (queryObject: any) => {
 
 }
 
-export const scrollHandler = (e: any) => {
-  e.preventDefault();
-  const hashVal = e.currentTarget.getAttribute('href').split("/").join("")
+export const scrollHandler = (e: any, hash?: string) => {
+  e?.preventDefault?.();
+  const hashVal = hash ? hash : e.currentTarget.getAttribute('href').split("/").join("")
   // @ts-ignore
   window.history.pushState(null, null, `${hashVal}`)
   document.querySelector(hashVal)?.scrollIntoView({

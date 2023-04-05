@@ -1,10 +1,13 @@
+import { useState } from "react"
 import About from '@/source/components/about/About';
 import Navbar from '@/source/components/general/Navbar';
 import Hero from '@/source/components/hero/Hero';
+import Rooms from '@/source/components/rooms/Rooms';
 import { createClient } from 'next-sanity';
 import Head from 'next/head'
 
 export default function Home() {
+  const [roomType, setRoomType] = useState("")
   return (
     <>
       <Head>
@@ -18,6 +21,7 @@ export default function Home() {
         <Navbar />
         <Hero />
         <About />
+        <Rooms setRoomType={setRoomType} />
         <div className="py-60"></div>
       </main>
     </>
