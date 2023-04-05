@@ -65,7 +65,7 @@
     animation: btn-trans 1s linear infinite;
   }
 
-  .outfade-loc {
-    background: linear-gradient(to left, #ebffeb, #ebffeb, #ebffeb, transparent);
+  .pic-scale-cont:hover img {
+    transform: scale(1.2);
   }
 }

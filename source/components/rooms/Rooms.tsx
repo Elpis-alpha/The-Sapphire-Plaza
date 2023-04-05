@@ -4,76 +4,9 @@ import { FaHotel } from "react-icons/fa"
 import { Oval } from "react-loader-spinner"
 import { v4 } from "uuid"
 
-const Rooms = ({ setRoomType }: { setRoomType: Function }) => {
-	// Fake data, use sanity to get real data
-	const data: any = [
-		{
-			_id: v4(),
-			name: "Master Bedroom",
-			rate: "$300/night",
-			image: "/rooms/1.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Couple Simple Room",
-			rate: "$150/night",
-			image: "/rooms/2.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Luxe Room",
-			rate: "$700/night",
-			image: "/rooms/3.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Kids Bedroom",
-			rate: "$100/night",
-			image: "/rooms/4.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Family Luxe",
-			rate: "$500/night",
-			image: "/rooms/5.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Premium Room",
-			rate: "$180/night",
-			image: "/rooms/6.jpg"
-		},
-		{
-			_id: v4(),
-			name: "King Room",
-			rate: "$300/night",
-			image: "/rooms/7.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Queen Bedroom",
-			rate: "$200/night",
-			image: "/rooms/8.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Studio Bedroom",
-			rate: "$450/night",
-			image: "/rooms/9.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Studio Bedroom",
-			rate: "$450/night",
-			image: "/rooms/9.jpg"
-		},
-		{
-			_id: v4(),
-			name: "Studio Bedroom",
-			rate: "$450/night",
-			image: "/rooms/9.jpg"
-		},
-	]
+const Rooms = ({ setRoomType, rooms }: { setRoomType: Function, rooms: any[] }) => {
+	// Fake rooms, use sanity to get real rooms
+
 	const [count, setCount] = useState(6)
 	return (
 		<section id="rooms" className="px-6 md:px-12 xl:px-20 w-full pt-32 flex flex-col gap-10 items-center justify-between">
@@ -96,8 +29,8 @@ const Rooms = ({ setRoomType }: { setRoomType: Function }) => {
 			</div>
 			<div className="w-full">
 				<div className="flex flex-wrap w-full gap-4">
-					{data.length === 0 && <div className="py-8 font-playfair uppercase w-full text-2xl">Sorry, there are no free rooms at the moment</div>}
-					{data.slice(0, count).map((item: any) => <div key={item._id} className="w-full md:w-[calc(50%_-_8px)] xl:w-[calc(33.3333%_-_((2_*_16px)_/_3))] bg-darkOverlay">
+					{rooms.length === 0 && <div className="py-8 font-playfair uppercase w-full text-2xl">Sorry, there are no free rooms at the moment</div>}
+					{rooms.slice(0, count).map((item: any) => <div key={item._id} className="w-full md:w-[calc(50%_-_8px)] xl:w-[calc(33.3333%_-_((2_*_16px)_/_3))] bg-darkOverlay">
 						<div className="w-full pt-[70%]">
 							{/* {item.name} */}
 
@@ -112,14 +45,14 @@ const Rooms = ({ setRoomType }: { setRoomType: Function }) => {
 							</div>
 
 							{/* Rent Item */}
-							<div onClick={() => { setRoomType(item.name); scrollHandler(null, "#home") }}
+							<div onClick={() => { setRoomType(item.name); scrollHandler(null, "#book") }}
 								className="absolute top-2 right-2 z-20 flex items-center justify-center bg-white px-2 py-2 
 								bg-opacity-20 text-3xl cursor-pointer text-white hover:text-linkHover hover:bg-opacity-50" title="Book Now">
 								<FaHotel />
 							</div>
 
 							{/* Item Image */}
-							<div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full z-10 flex items-center justify-center">
+							<div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full z-10 flex items-center justify-center overflow-hidden pic-scale-cont">
 								<img src={item.image} alt={item.name} title={item.name} className="w-full h-full object-cover" />
 								<div className="z-10 absolute top-0 left-0 right-0 bottom-0 w-full h-full opacity-30 bg-black"></div>
 							</div>
@@ -134,7 +67,7 @@ const Rooms = ({ setRoomType }: { setRoomType: Function }) => {
 
 				<div className="flex pt-4 gap-4">
 					{(count > 6) && <button className="w-full bg-otherBg p-4 text-white rounded-md hover:bg-darkText" onClick={() => setCount(prev => prev - 3)}>Show Less</button>}
-					{count < data.length && <button className="w-full bg-otherBg p-4 text-white rounded-md hover:bg-darkText" onClick={() => setCount(prev => prev + 3)}>Show More</button>}
+					{count < rooms.length && <button className="w-full bg-otherBg p-4 text-white rounded-md hover:bg-darkText" onClick={() => setCount(prev => prev + 3)}>Show More</button>}
 				</div>
 			</div>
 		</section>
