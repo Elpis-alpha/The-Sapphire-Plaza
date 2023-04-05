@@ -29,7 +29,6 @@ const Navbar = () => {
 							<li><Link onClick={scrollHandler} className="hover:text-linkHover duration-75	transition-all" href="/#home">Home</Link></li>
 							<li><Link onClick={scrollHandler} className="hover:text-linkHover duration-75	transition-all" href="/#about">About Us</Link></li>
 							<li><Link onClick={scrollHandler} className="hover:text-linkHover duration-75	transition-all" href="/#rooms">Our Rooms</Link></li>
-							<li><Link onClick={scrollHandler} className="hover:text-linkHover duration-75	transition-all" href="/#jobs">Open Jobs</Link></li>
 							<li><Link onClick={scrollHandler} className="hover:text-linkHover duration-75	transition-all" href="/#faq">FAQ</Link></li>
 						</ul>
 					</div>
@@ -51,7 +50,6 @@ const Navbar = () => {
 							<li><Link onClick={scrollHandler} className="hover:text-linkHover duration-75	transition-all" href="/#home">Home</Link></li>
 							<li><Link onClick={scrollHandler} className="hover:text-linkHover duration-75	transition-all" href="/#about">About Us</Link></li>
 							<li><Link onClick={scrollHandler} className="hover:text-linkHover duration-75	transition-all" href="/#rooms">Our Rooms</Link></li>
-							<li><Link onClick={scrollHandler} className="hover:text-linkHover duration-75	transition-all" href="/#jobs">Open Jobs</Link></li>
 							<li><Link onClick={scrollHandler} className="hover:text-linkHover duration-75	transition-all" href="/#faq">FAQ</Link></li>
 							<div className="flex smm:hidden items-center text-[#00C914]">
 								<Link onClick={scrollHandler} href="/#book" className="flex items-center gap-[8px] xl:px-[16px] xl:py-[12px] px-[14px] py-[8px] bg-otherBg text-lightText">

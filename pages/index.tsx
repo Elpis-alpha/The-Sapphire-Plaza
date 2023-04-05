@@ -7,6 +7,7 @@ import { createClient } from 'next-sanity';
 import Head from 'next/head'
 import Book from "@/source/components/book/Book";
 import { v4 } from "uuid";
+import FAQ from "@/source/components/faq/FAQ";
 
 export default function Home() {
   const [roomType, setRoomType] = useState("")
@@ -78,6 +79,23 @@ export default function Home() {
       image: "/rooms/9.jpg"
     },
   ]
+  const faqs: any = [
+    {
+      _id: v4(),
+      question: "What is the check-in time at The Sapphire Plaza?",
+      answer: "The check-in time is 3:00 PM, and check-out time is 12:00 PM. Early check-in and late check-out may be available upon request, subject to availability.",
+    },
+    {
+      _id: v4(),
+      question: "What is the check-in time at The Sapphire Plaza?",
+      answer: "The check-in time is 3:00 PM, and check-out time is 12:00 PM. Early check-in and late check-out may be available upon request, subject to availability.",
+    },
+    {
+      _id: v4(),
+      question: "What is the check-in time at The Sapphire Plaza?",
+      answer: "The check-in time is 3:00 PM, and check-out time is 12:00 PM. Early check-in and late check-out may be available upon request, subject to availability.",
+    },
+  ]
   return (
     <>
       <Head>
@@ -93,7 +111,7 @@ export default function Home() {
         <About />
         <Rooms rooms={rooms} setRoomType={setRoomType} />
         <Book rooms={rooms} roomType={roomType} setRoomType={setRoomType} />
-        
+        <FAQ faqs={faqs} />
         <div className="py-60"></div>
       </main>
     </>
