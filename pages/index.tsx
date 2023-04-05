@@ -8,6 +8,7 @@ import Head from 'next/head'
 import Book from "@/source/components/book/Book";
 import { v4 } from "uuid";
 import FAQ from "@/source/components/faq/FAQ";
+import Footer from "@/source/components/general/Footer";
 
 export default function Home() {
   const [roomType, setRoomType] = useState("")
@@ -112,7 +113,7 @@ export default function Home() {
         <Rooms rooms={rooms} setRoomType={setRoomType} />
         <Book rooms={rooms} roomType={roomType} setRoomType={setRoomType} />
         <FAQ faqs={faqs} />
-        <div className="py-60"></div>
+        <Footer />
       </main>
     </>
   )
