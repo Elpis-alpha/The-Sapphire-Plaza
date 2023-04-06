@@ -25,7 +25,7 @@ export default function Home({ rooms, faqs }: any) {
         <meta property="og:description" content="Welcome to The Sapphire Plaza, an exquisite hotel nestled in the heart of the city. Our luxurious accommodations, unparalleled service, and state-of-the-art amenities make us the perfect choice for discerning travelers. Whether you're here for business or pleasure, our elegant rooms and suites, gourmet dining options, and premium facilities are sure to exceed your expectations. Discover the ultimate in comfort, style, and sophistication at The Sapphire Plaza." />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:image" content={`https://sapphire-plaza.elpis.cc/images/og-image.png`} />
+        <meta property="og:image" content={`https://sapphire-plaza.elpis.cc/images/og-image.jpg`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
@@ -34,7 +34,7 @@ export default function Home({ rooms, faqs }: any) {
         <meta name="twitter:creator" content="@elpis_alpha" />
         <meta name="twitter:title" content="The Sapphire Plaza" />
         <meta name="twitter:description" content="Welcome to The Sapphire Plaza, an exquisite hotel nestled in the heart of the city. Our luxurious accommodations, unparalleled service, and state-of-the-art amenities make us the perfect choice for discerning travelers. Whether you're here for business or pleasure, our elegant rooms and suites, gourmet dining options, and premium facilities are sure to exceed your expectations. Discover the ultimate in comfort, style, and sophistication at The Sapphire Plaza." />
-        <meta name="twitter:image" content="https://sapphire-plaza.elpis.cc/images/og-image.png" />
+        <meta name="twitter:image" content="https://sapphire-plaza.elpis.cc/images/og-image.jpg" />
       </Head>
       <main className='font-body bg-mainBg text-darkText text-base md:text-xl z-20 min-h-screen flex flex-col font-normal max-w-[1800px] mx-auto overflow-hidden'>
         <Navbar />
