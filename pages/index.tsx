@@ -6,81 +6,12 @@ import Rooms from '@/source/components/rooms/Rooms';
 import { createClient } from 'next-sanity';
 import Head from 'next/head'
 import Book from "@/source/components/book/Book";
-import { v4 } from "uuid";
 import FAQ from "@/source/components/faq/FAQ";
 import Footer from "@/source/components/general/Footer";
 import imageUrlBuilder from "@sanity/image-url";
 
 export default function Home({ rooms, faqs }: any) {
   const [roomType, setRoomType] = useState("")
-  const roomsx: any = [
-    {
-      _id: v4(),
-      name: "Master Bedroom",
-      rate: "$300/night",
-      image: "/rooms/1.jpg"
-    },
-    {
-      _id: v4(),
-      name: "Couple Simple Room",
-      rate: "$150/night",
-      image: "/rooms/2.jpg"
-    },
-    {
-      _id: v4(),
-      name: "Luxe Room",
-      rate: "$700/night",
-      image: "/rooms/3.jpg"
-    },
-    {
-      _id: v4(),
-      name: "Kids Bedroom",
-      rate: "$100/night",
-      image: "/rooms/4.jpg"
-    },
-    {
-      _id: v4(),
-      name: "Family Luxe",
-      rate: "$500/night",
-      image: "/rooms/5.jpg"
-    },
-    {
-      _id: v4(),
-      name: "Premium Room",
-      rate: "$180/night",
-      image: "/rooms/6.jpg"
-    },
-    {
-      _id: v4(),
-      name: "King Room",
-      rate: "$300/night",
-      image: "/rooms/7.jpg"
-    },
-    {
-      _id: v4(),
-      name: "Queen Bedroom",
-      rate: "$200/night",
-      image: "/rooms/8.jpg"
-    },
-    {
-      _id: v4(),
-      name: "Studio Bedroom",
-      rate: "$450/night",
-      image: "/rooms/9.jpg"
-    },
-    {
-      _id: v4(),
-      name: "Studio Bedroom",
-      rate: "$450/night",
-      image: "/rooms/9.jpg"
-    },
-    {
-      _id: v4(),
-      name: "Studio Bedroom",
-      rate: "$450/night",
-      image: "/rooms/9.jpg"
-    },
-  ]
   return (
     <>
       <Head>
@@ -89,6 +20,21 @@ export default function Home({ rooms, faqs }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#E3DDFF"></meta>
+        <meta property="og:title" content="The Sapphire Plaza" />
+        <meta property="og:url" content="https://sapphire-plaza.elpis.cc/" />
+        <meta property="og:description" content="Welcome to The Sapphire Plaza, an exquisite hotel nestled in the heart of the city. Our luxurious accommodations, unparalleled service, and state-of-the-art amenities make us the perfect choice for discerning travelers. Whether you're here for business or pleasure, our elegant rooms and suites, gourmet dining options, and premium facilities are sure to exceed your expectations. Discover the ultimate in comfort, style, and sophistication at The Sapphire Plaza." />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:image" content={`https://sapphire-plaza.elpis.cc/images/og-image.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@elpis_alpha" />
+        <meta name="twitter:creator" content="@elpis_alpha" />
+        <meta name="twitter:title" content="The Sapphire Plaza" />
+        <meta name="twitter:description" content="Welcome to The Sapphire Plaza, an exquisite hotel nestled in the heart of the city. Our luxurious accommodations, unparalleled service, and state-of-the-art amenities make us the perfect choice for discerning travelers. Whether you're here for business or pleasure, our elegant rooms and suites, gourmet dining options, and premium facilities are sure to exceed your expectations. Discover the ultimate in comfort, style, and sophistication at The Sapphire Plaza." />
+        <meta name="twitter:image" content="https://sapphire-plaza.elpis.cc/images/og-image.png" />
       </Head>
       <main className='font-body bg-mainBg text-darkText text-base md:text-xl z-20 min-h-screen flex flex-col font-normal max-w-[1800px] mx-auto overflow-hidden'>
         <Navbar />
