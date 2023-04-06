@@ -9,10 +9,11 @@ import Book from "@/source/components/book/Book";
 import { v4 } from "uuid";
 import FAQ from "@/source/components/faq/FAQ";
 import Footer from "@/source/components/general/Footer";
+import imageUrlBuilder from "@sanity/image-url";
 
-export default function Home() {
+export default function Home({ rooms, faqs }: any) {
   const [roomType, setRoomType] = useState("")
-  const rooms: any = [
+  const roomsx: any = [
     {
       _id: v4(),
       name: "Master Bedroom",
@@ -80,23 +81,6 @@ export default function Home() {
       image: "/rooms/9.jpg"
     },
   ]
-  const faqs: any = [
-    {
-      _id: v4(),
-      question: "What is the check-in time at The Sapphire Plaza?",
-      answer: "The check-in time is 3:00 PM, and check-out time is 12:00 PM. Early check-in and late check-out may be available upon request, subject to availability.",
-    },
-    {
-      _id: v4(),
-      question: "What is the check-in time at The Sapphire Plaza?",
-      answer: "The check-in time is 3:00 PM, and check-out time is 12:00 PM. Early check-in and late check-out may be available upon request, subject to availability.",
-    },
-    {
-      _id: v4(),
-      question: "What is the check-in time at The Sapphire Plaza?",
-      answer: "The check-in time is 3:00 PM, and check-out time is 12:00 PM. Early check-in and late check-out may be available upon request, subject to availability.",
-    },
-  ]
   return (
     <>
       <Head>
@@ -119,14 +103,29 @@ export default function Home() {
   )
 }
 
-// const client = createClient({
-//   projectId: "uqdx1j1r",
-//   dataset: "production",
-//   apiVersion: "2023-04-04",
-//   useCdn: false
-// });
+const client = createClient({
+  projectId: "uqdx1j1r",
+  dataset: "production",
+  apiVersion: "2023-04-04",
+  useCdn: false
+});
 
-// export async function getStaticProps() {
-//   const pets = await client.fetch(`*[_type == "pet"]`);
-//   return { props: { pets } };
-// }
+const builder = imageUrlBuilder(client);
+
+function urlFor(source: any) {
+  return builder.image(source);
+}
+
+export async function getStaticProps() {
+  const rooms = await client.fetch(`*[_type == "room"]`);
+  const faqs = await client.fetch(`*[_type == "faq"]`);
+  return {
+    props: {
+      rooms: rooms.map((it: any) => {
+        const image = urlFor(it.image).url()
+        return { ...it, image }
+      }),
+      faqs
+    }
+  };
+}
