@@ -36,7 +36,7 @@ export default function Home({ rooms, faqs }: any) {
         <meta name="twitter:description" content="Welcome to The Sapphire Plaza, an exquisite hotel nestled in the heart of the city. Our luxurious accommodations, unparalleled service, and state-of-the-art amenities make us the perfect choice for discerning travelers. Whether you're here for business or pleasure, our elegant rooms and suites, gourmet dining options, and premium facilities are sure to exceed your expectations. Discover the ultimate in comfort, style, and sophistication at The Sapphire Plaza." />
         <meta name="twitter:image" content="https://sapphire-plaza.elpis.cc/images/og-image.jpg" />
       </Head>
-      <main className='font-body bg-mainBg text-darkText text-base md:text-xl z-20 min-h-screen flex flex-col font-normal max-w-[1800px] mx-auto overflow-hidden'>
+      <main className='font-body bg-mainBg text-darkText text-base md:text-xl z-20 min-h-screen flex flex-col font-normal max-w-[1920px] mx-auto overflow-hidden'>
         <Navbar />
         <Hero />
         <About />
