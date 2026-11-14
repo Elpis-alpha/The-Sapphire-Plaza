@@ -1,66 +1,35 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors')
-
 module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./source/**/*.{js,ts,jsx,tsx}",
-
-    // Or if using `src` directory:
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./source/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      black: colors.black,
-      white: colors.white,
-      gray: colors.gray,
-      emerald: colors.emerald,
-      indigo: colors.indigo,
-      yellow: colors.yellow,
-
-      // Site colors
-      mainBg: "#E3DDFF",
-      otherBg: "#2B2644",
-      darkText: '#191923',
-      lightText: '#E3DDFF',
-      linkHover: '#2B2644',
-      inputOutline: '#4226ce',
-      darkOverlay: '#00000026',
-    },
-    fontFamily: {
-      "body": ["Poppins", "sans-serif"],
-      "playfair": ["Playfair Display", "sans-serif"]
-    },
-    screens: {
-      // => @media (min-width: 400px) { ... }
-      'ssm': '400px',
-      // => @media (min-width: 500px) { ... }
-      'smm': '500px',
-      // => @media (min-width: 640px) { ... }
-      'sm': '640px',
-      // => @media (min-width: 768px) { ... }
-      'md': '768px',
-      // => @media (min-width: 1024px) { ... }
-      'lg': '1024px',
-      // => @media (min-width: 1280px) { ... }
-      'xl': '1280px',
-      // => @media (min-width: 1536px) { ... }
-      '2xl': '1536px',
-    },
     extend: {
-      animation: {
-        opacity: 'opacity .5s ease-out 1',
+      colors: {
+        // Fixed palette – sampled from the hero photograph.
+        ink: "#05081A",
+        abyss: "#0A1236",
+        sapphire: { DEFAULT: "#2346E8", deep: "#122A9C", bright: "#6C8BFF", pale: "#B4C2FF" },
+        lamp: { DEFAULT: "#F0B46A", soft: "#F8DDB4" },
+        limestone: { DEFAULT: "#EFE8DB", dark: "#E0D6C3" },
+        bone: "#F3F1EA",
+        // Semantic tokens – these follow the active page theme.
+        bg: "var(--bg)",
+        fg: "var(--fg)",
+        muted: "var(--muted)",
+        line: "var(--line)",
+        accent: "var(--accent)",
+        "accent-ink": "var(--accent-ink)",
       },
-      keyframes: {
-        opacity: {
-          '0%': { opacity: 0 },
-          '100%': { opacity: 1 },
-        }
-      }
+      fontFamily: {
+        display: ["var(--font-display)", "Didot", "Bodoni MT", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "Menlo", "monospace"],
+      },
+      spacing: { gutter: "var(--gutter)" },
+      screens: { xs: "420px", "3xl": "1800px" },
+      transitionTimingFunction: {
+        cut: "cubic-bezier(0.7, 0, 0.2, 1)",
+        glide: "cubic-bezier(0.16, 1, 0.3, 1)",
+      },
     },
   },
   plugins: [],
