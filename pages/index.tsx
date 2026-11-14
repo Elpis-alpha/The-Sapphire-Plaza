@@ -1,77 +1,97 @@
-import { useState } from "react"
-import About from '@/source/components/about/About';
-import Navbar from '@/source/components/general/Navbar';
-import Hero from '@/source/components/hero/Hero';
-import Rooms from '@/source/components/rooms/Rooms';
-import { createClient } from 'next-sanity';
-import Head from 'next/head'
-import Book from "@/source/components/book/Book";
-import FAQ from "@/source/components/faq/FAQ";
-import Footer from "@/source/components/general/Footer";
-import imageUrlBuilder from "@sanity/image-url";
+import type { GetStaticProps } from "next"
+import Head from "next/head"
+import { useRef, useState } from "react"
+import Dawn from "@/source/components/Dawn"
+import Faq from "@/source/components/Faq"
+import Footer from "@/source/components/Footer"
+import Hero from "@/source/components/Hero"
+import Hours from "@/source/components/Hours"
+import House from "@/source/components/House"
+import { Gem } from "@/source/components/Marks"
+import Nav from "@/source/components/Nav"
+import Reserve from "@/source/components/Reserve"
+import Rooms from "@/source/components/Rooms"
+import { scrollToHash } from "@/source/lib/motion"
+import { PlazaTimeProvider } from "@/source/lib/plaza-time"
+import { useReveals } from "@/source/lib/reveals"
+import { Room, sortRooms, toRoom } from "@/source/lib/rooms"
+import { Faq as FaqEntry, fetchContent } from "@/source/lib/sanity"
+import { SITE } from "@/source/lib/site"
 
-export default function Home({ rooms, faqs }: any) {
-  const [roomType, setRoomType] = useState("")
-  return (
-    <>
-      <Head>
-        <title>The Sapphire Plaza</title>
-        <meta name="description" content="Welcome to The Sapphire Plaza, an exquisite hotel nestled in the heart of the city. Our luxurious accommodations, unparalleled service, and state-of-the-art amenities make us the perfect choice for discerning travelers. Whether you're here for business or pleasure, our elegant rooms and suites, gourmet dining options, and premium facilities are sure to exceed your expectations. Discover the ultimate in comfort, style, and sophistication at The Sapphire Plaza." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#E3DDFF"></meta>
-        <meta property="og:title" content="The Sapphire Plaza" />
-        <meta property="og:url" content="https://sapphire-plaza.elpis.cc/" />
-        <meta property="og:description" content="Welcome to The Sapphire Plaza, an exquisite hotel nestled in the heart of the city. Our luxurious accommodations, unparalleled service, and state-of-the-art amenities make us the perfect choice for discerning travelers. Whether you're here for business or pleasure, our elegant rooms and suites, gourmet dining options, and premium facilities are sure to exceed your expectations. Discover the ultimate in comfort, style, and sophistication at The Sapphire Plaza." />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:image" content={`https://sapphire-plaza.elpis.cc/images/og-image.jpg`} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:type" content="image/png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@elpis_alpha" />
-        <meta name="twitter:creator" content="@elpis_alpha" />
-        <meta name="twitter:title" content="The Sapphire Plaza" />
-        <meta name="twitter:description" content="Welcome to The Sapphire Plaza, an exquisite hotel nestled in the heart of the city. Our luxurious accommodations, unparalleled service, and state-of-the-art amenities make us the perfect choice for discerning travelers. Whether you're here for business or pleasure, our elegant rooms and suites, gourmet dining options, and premium facilities are sure to exceed your expectations. Discover the ultimate in comfort, style, and sophistication at The Sapphire Plaza." />
-        <meta name="twitter:image" content="https://sapphire-plaza.elpis.cc/images/og-image.jpg" />
-      </Head>
-      <main className='font-body bg-mainBg text-darkText text-base md:text-xl z-20 min-h-screen flex flex-col font-normal max-w-[1920px] mx-auto overflow-hidden'>
-        <Navbar />
-        <Hero />
-        <About />
-        <Rooms rooms={rooms} setRoomType={setRoomType} />
-        <Book rooms={rooms} roomType={roomType} setRoomType={setRoomType} />
-        <FAQ faqs={faqs} />
-        <Footer />
-      </main>
-    </>
-  )
+type Props = { rooms: Room[]; faqs: FaqEntry[]; builtAt: string }
+
+export default function Home({ rooms, faqs, builtAt }: Props) {
+	const main = useRef<HTMLElement>(null)
+	const [chosen, setChosen] = useState<{ name: string; at: number } | null>(null)
+	useReveals(main)
+
+	const reserve = (room: Room) => {
+		setChosen({ name: room.name, at: Date.now() })
+		scrollToHash("#book")
+	}
+
+	const title = `${SITE.name} — ${SITE.tagline}`
+	const image = `${SITE.url}/images/og-image.jpg`
+
+	return (
+		<PlazaTimeProvider builtAt={builtAt}>
+			<Head>
+				<title>{title}</title>
+				<meta name="description" content={SITE.description} />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<link rel="canonical" href={`${SITE.url}/`} />
+				<meta property="og:title" content={title} />
+				<meta property="og:description" content={SITE.description} />
+				<meta property="og:url" content={`${SITE.url}/`} />
+				<meta property="og:type" content="website" />
+				<meta property="og:locale" content="en_US" />
+				<meta property="og:image" content={image} />
+				<meta property="og:image:width" content="1200" />
+				<meta property="og:image:height" content="630" />
+				<meta property="og:image:type" content="image/jpeg" />
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta name="twitter:site" content="@elpis_alpha" />
+				<meta name="twitter:creator" content="@elpis_alpha" />
+				<meta name="twitter:title" content={title} />
+				<meta name="twitter:description" content={SITE.description} />
+				<meta name="twitter:image" content={image} />
+			</Head>
+
+			<div className="curtain" aria-hidden>
+				<div className="flex flex-col items-center gap-6">
+					<Gem className="curtain-gem h-12 w-14 text-lamp" />
+					<p className="curtain-word eyebrow !tracking-[0.42em]">The Sapphire Plaza</p>
+				</div>
+			</div>
+
+			<a href="#about" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[110] focus:bg-lamp focus:px-4 focus:py-3 focus:text-ink">
+				Skip to content
+			</a>
+
+			<Nav />
+			<main ref={main} className="relative">
+				<Hero />
+				<House roomCount={rooms.length} />
+				<Hours />
+				<Rooms rooms={rooms} onReserve={reserve} />
+				<Faq faqs={faqs} />
+				<Dawn />
+				<Reserve rooms={rooms} chosen={chosen} />
+			</main>
+			<Footer />
+		</PlazaTimeProvider>
+	)
 }
 
-const client = createClient({
-  projectId: "uqdx1j1r",
-  dataset: "production",
-  apiVersion: "2023-04-04",
-  useCdn: false
-});
-
-const builder = imageUrlBuilder(client);
-
-function urlFor(source: any) {
-  return builder.image(source);
-}
-
-export async function getStaticProps() {
-  const rooms = await client.fetch(`*[_type == "room"]`);
-  const faqs = await client.fetch(`*[_type == "faq"]`);
-  return {
-    props: {
-      rooms: rooms.map((it: any) => {
-        const image = urlFor(it.image).url()
-        return { ...it, image }
-      }),
-      faqs
-    }
-  };
+export const getStaticProps: GetStaticProps<Props> = async () => {
+	const { rooms, faqs } = await fetchContent()
+	return {
+		props: {
+			rooms: sortRooms(rooms.map(toRoom)),
+			faqs,
+			builtAt: new Date().toISOString(),
+		},
+		// Pick up edits made in the Sanity studio without a redeploy.
+		revalidate: 600,
+	}
 }
