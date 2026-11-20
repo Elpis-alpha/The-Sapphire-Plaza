@@ -1,0 +1,33 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	// Worker name. Must match the name of the Worker in the Cloudflare dashboard
+	// (Workers Builds refuses to deploy otherwise) and the self-reference below.
+	"name": "sapphire-plaza",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2024-12-30",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"observability": { "enabled": true },
+
+	// Static files produced by the build (/_next/static, public/*).
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+
+	// Without this binding /_next/image returns the original, unoptimised file,
+	// which would undo the responsive-image work. Do not remove it.
+	"images": { "binding": "IMAGES" },
+
+	// The Worker calls itself for page-router revalidation.
+	"services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "sapphire-plaza" }],
+
+	// ISR: pages are regenerated every 600s (see getStaticProps in pages/index.tsx).
+	// Rendered pages are cached in R2, and a Durable Object queue de-duplicates
+	// revalidations. Create the bucket once in the dashboard (R2 > Create bucket)
+	// with exactly this name before the first deploy.
+	"r2_buckets": [{ "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "sapphire-plaza-cache" }],
+	"durable_objects": {
+		"bindings": [{ "name": "NEXT_CACHE_DO_QUEUE", "class_name": "DOQueueHandler" }]
+	},
+	"migrations": [{ "tag": "v1", "new_sqlite_classes": ["DOQueueHandler"] }]
+}

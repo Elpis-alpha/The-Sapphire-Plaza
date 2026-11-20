@@ -34,6 +34,30 @@ npm install
 npm run dev
 ```
 
+## Deploying to Cloudflare
+
+The site runs as a Cloudflare Worker (named `sapphire-plaza`) through [OpenNext for Cloudflare](https://opennext.js.org/cloudflare), pinned to a release that supports Next 14. Setup is done in the Cloudflare dashboard; nothing needs running locally.
+
+1. **Create the cache bucket.** Dashboard → R2 → Create bucket, named exactly `sapphire-plaza-cache`. It holds the regenerated pages (the page revalidates every 10 minutes, so Sanity edits appear without a redeploy).
+2. **Connect the repository.** Workers & Pages → Create → Import a repository → this repo. Use the project/Worker name `sapphire-plaza` (it must match `name` in `wrangler.jsonc`) and set:
+
+   | Setting | Value |
+   | --- | --- |
+   | Production branch | `main` |
+   | Build command | `npx opennextjs-cloudflare build` |
+   | Deploy command | `npx opennextjs-cloudflare deploy` |
+   | Root directory | `/` |
+
+   No build variables are needed: Sanity is read from its public API and the EmailJS settings are in the source.
+3. **Point the domain.** Worker → Settings → Domains & routes → Add → Custom domain → `sapphire-plaza.elpis.cc` (the `elpis.cc` zone must be on this Cloudflare account). Remove any old DNS record for that name first, or the hostname will conflict.
+
+Things that will break the images if changed:
+
+- `wrangler.jsonc` must keep the `images` binding. Without it `/_next/image` serves the original, unoptimised files.
+- Every `quality={n}` used in the source, and the `q=` in `source/lib/room-photos.ts`, must be listed in `images.qualities` in `next.config.js`. The Worker answers any other quality with HTTP 400, which shows as a missing image.
+
+Preview the Worker build locally with `npm run preview`.
+
 ## Where things are
 
 | Path | What |
@@ -46,3 +70,22 @@ npm run dev
 | `styles/globals.css` | Theme tokens and component styles |
 
 Photography is from [Unsplash](https://unsplash.com/).
+
+### Room photographs
+
+The room photos in the CMS are only 640px wide, which looks soft at the sizes the site shows them. Each room therefore has a 2400px stand-in in `public/images/rooms/`, wired up in `source/lib/room-photos.ts`. A room uses its CMS photograph only when that is at least 1280px wide, so uploading a larger one in the studio replaces the stand-in automatically.
+
+| Room | Photographer |
+| --- | --- |
+| The Sapphire Suite | [Rosemary Media](https://unsplash.com/photos/hanging-chairs-on-seaside-patio-jkO94J7ijBM) |
+| The Executive Suite | [Clay Banks](https://unsplash.com/photos/bedroom-with-wooden-bed-and-bathroom-yOs9Zc5JvTw) |
+| The Royal Club Room | [Clay Banks](https://unsplash.com/photos/a-bedroom-with-two-beds-and-a-desk-rP0OTFdVaak) |
+| Luxe Room | [Rob Wingate](https://unsplash.com/photos/window-curtain-open-wide-Fd9tUmRBJzk) |
+| Family Luxe | [Sanju Pandita](https://unsplash.com/photos/a-living-room-filled-with-furniture-and-lots-of-windows-JheggqJ6Lxc) |
+| Studio Bedroom | [Aquilion Property](https://unsplash.com/photos/a-room-with-a-bed-and-a-table-with-a-bowl-on-it-dEuvqNbwRuw) |
+| Master Bedroom | [sidath vimukthi](https://unsplash.com/photos/bedroom-with-wooden-walls-and-bed-XToGJDquirQ) |
+| King Room | [Zane Persaud](https://unsplash.com/photos/white-bed-linen-on-bed-FC3gmwd6Mns) |
+| Queen Bedroom | [ANNIE HATUANH](https://unsplash.com/photos/green-trees-viewed-through-window-MO_ShjtcMUs) |
+| Premium Room | [Meklay YOTKHAMSAY](https://unsplash.com/photos/a-neatly-made-bed-in-a-modern-hotel-room-mNdhu5gl_P4) |
+| Couple Simple Room | [Johnny Ho](https://unsplash.com/photos/two-chairs-and-table-overlook-ocean-view-J24R8RLPj1A) |
+| Kids Bedroom | [Alex Tyson](https://unsplash.com/photos/a-bedroom-with-bunk-beds-and-a-couch-ooxQsJEKqwU) |
