@@ -11,7 +11,10 @@ const Dawn = () => {
 				src={dawnPhoto}
 				alt="First light over the beach below the house: pale surf and a low sun behind soft cloud."
 				fill
-				sizes="100vw"
+				// Painted at 1.28x (scale-[1.28]) and cropped by height on phones, so the
+				// box width understates what is on screen.
+				sizes="(min-width: 768px) 135vw, 300vw"
+				quality={90}
 				placeholder="blur"
 				data-parallax="12"
 				className="scale-[1.28] object-cover"

@@ -76,7 +76,10 @@ const House = ({ roomCount }: { roomCount: number }) => {
 							src={villaPhoto}
 							alt="A timber-lined garden room with a low platform bed, doors open to the courtyard."
 							fill
-							sizes="(min-width: 1024px) 46vw, 92vw"
+							// 4:5 frame, 1.18x scale, landscape photo cropped by height: the photo
+							// paints far wider than the frame (see Hours for the arithmetic).
+							sizes="(min-width: 1024px) 140vh, 205vw"
+							quality={90}
 							placeholder="blur"
 							data-parallax="8"
 							className="scale-[1.18] object-cover"
@@ -104,7 +107,8 @@ const House = ({ roomCount }: { roomCount: number }) => {
 								src={poolPhoto}
 								alt="The pool court after dark, its tiled floor glowing blue under the pavilion lights."
 								fill
-								sizes="(min-width: 1024px) 23rem, 80vw"
+								sizes="28rem"
+								quality={90}
 								placeholder="blur"
 								data-parallax="10"
 								className="scale-[1.22] object-cover"

@@ -58,7 +58,10 @@ const Hero = () => {
 						alt="The Sapphire Plaza at blue hour: a low pavilion glowing amber beside a pool, under a deep blue sky."
 						fill
 						priority
-						sizes="100vw"
+						// object-cover on a 3:2 photo: wider than 3:2 the width decides, taller
+						// (every phone) the height does, so ask for the width that fills it.
+						sizes="(min-aspect-ratio: 3/2) 100vw, 150vh"
+						quality={90}
 						placeholder="blur"
 						className="object-cover"
 						style={{ objectPosition: `${FOCUS[0] * 100}% ${FOCUS[1] * 100}%` }}

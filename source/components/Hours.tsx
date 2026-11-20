@@ -162,7 +162,14 @@ const Hours = () => {
 									src={chapter.photo}
 									alt={chapter.alt}
 									fill
-									sizes="(min-width: 1024px) 55vh, (min-width: 768px) 44vw, 92vw"
+									// `sizes` must describe what is painted, not the frame. These are 4:5
+									// frames holding landscape photos with object-cover, scaled 1.2x, so the
+									// photo is as tall as the frame and ~1.5x as wide as that, times 1.2:
+									//   lg: frame 68vh tall   -> 68vh * 1.5 * 1.2 = ~122vh
+									//   md: frame 44vw wide   -> 55vw * 1.5 * 1.2 = ~99vw
+									//   sm: frame 92vw wide   -> 115vw * 1.5 * 1.2 = ~207vw
+									sizes="(min-width: 1024px) 125vh, (min-width: 768px) 100vw, 210vw"
+									quality={90}
 									placeholder="blur"
 									className="hours-photo scale-[1.2] object-cover"
 								/>
