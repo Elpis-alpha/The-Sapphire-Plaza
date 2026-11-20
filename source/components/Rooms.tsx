@@ -102,7 +102,8 @@ const Rooms = ({ rooms, onReserve }: { rooms: Room[]; onReserve: (room: Room) =>
 										className="room-shot absolute inset-0"
 										data-state={index === active ? "active" : index === previous.current ? "previous" : "idle"}
 									>
-										<Photo room={room} sizes="(min-width: 1024px) 36vw, 0px" />
+										{/* 4:5 frame capped at 62vh, landscape photo cropped by height: painted ~93vh wide. */}
+										<Photo room={room} sizes="(min-width: 1024px) 95vh, 0px" />
 									</div>
 								))}
 								<p className="eyebrow tabular absolute left-5 top-5 z-10 bg-ink/70 px-3 py-2 text-bone backdrop-blur">
@@ -129,7 +130,8 @@ const Rooms = ({ rooms, onReserve }: { rooms: Room[]; onReserve: (room: Room) =>
 						{rooms.map((room, index) => (
 							<li key={room.id} className="w-[78vw] max-w-[22rem] shrink-0 snap-start scroll-ml-[var(--gutter)]">
 								<div className="cut-lg relative aspect-[4/5] overflow-hidden bg-abyss">
-									<Photo room={room} sizes="(max-width: 1023px) 78vw, 0px" />
+									{/* Card is 78vw (max 22rem) wide and 4:5, so the cropped photo paints ~1.9x that. */}
+									<Photo room={room} sizes="(min-width: 1024px) 0px, (min-width: 452px) 42rem, 147vw" />
 									<p className="eyebrow tabular absolute left-4 top-4 bg-ink/70 px-3 py-2 text-bone backdrop-blur">
 										{(index + 1).toString().padStart(2, "0")} / {rooms.length.toString().padStart(2, "0")}
 									</p>

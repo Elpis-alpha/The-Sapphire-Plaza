@@ -46,3 +46,22 @@ npm run dev
 | `styles/globals.css` | Theme tokens and component styles |
 
 Photography is from [Unsplash](https://unsplash.com/).
+
+### Room photographs
+
+The room photos in the CMS are only 640px wide, which looks soft at the sizes the site shows them. Each room therefore has a 2400px stand-in in `public/images/rooms/`, wired up in `source/lib/room-photos.ts`. A room uses its CMS photograph only when that is at least 1280px wide, so uploading a larger one in the studio replaces the stand-in automatically.
+
+| Room | Photographer |
+| --- | --- |
+| The Sapphire Suite | [Rosemary Media](https://unsplash.com/photos/hanging-chairs-on-seaside-patio-jkO94J7ijBM) |
+| The Executive Suite | [Clay Banks](https://unsplash.com/photos/bedroom-with-wooden-bed-and-bathroom-yOs9Zc5JvTw) |
+| The Royal Club Room | [Clay Banks](https://unsplash.com/photos/a-bedroom-with-two-beds-and-a-desk-rP0OTFdVaak) |
+| Luxe Room | [Rob Wingate](https://unsplash.com/photos/window-curtain-open-wide-Fd9tUmRBJzk) |
+| Family Luxe | [Sanju Pandita](https://unsplash.com/photos/a-living-room-filled-with-furniture-and-lots-of-windows-JheggqJ6Lxc) |
+| Studio Bedroom | [Aquilion Property](https://unsplash.com/photos/a-room-with-a-bed-and-a-table-with-a-bowl-on-it-dEuvqNbwRuw) |
+| Master Bedroom | [sidath vimukthi](https://unsplash.com/photos/bedroom-with-wooden-walls-and-bed-XToGJDquirQ) |
+| King Room | [Zane Persaud](https://unsplash.com/photos/white-bed-linen-on-bed-FC3gmwd6Mns) |
+| Queen Bedroom | [ANNIE HATUANH](https://unsplash.com/photos/green-trees-viewed-through-window-MO_ShjtcMUs) |
+| Premium Room | [Meklay YOTKHAMSAY](https://unsplash.com/photos/a-neatly-made-bed-in-a-modern-hotel-room-mNdhu5gl_P4) |
+| Couple Simple Room | [Johnny Ho](https://unsplash.com/photos/two-chairs-and-table-overlook-ocean-view-J24R8RLPj1A) |
+| Kids Bedroom | [Alex Tyson](https://unsplash.com/photos/a-bedroom-with-bunk-beds-and-a-couch-ooxQsJEKqwU) |

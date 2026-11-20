@@ -1,4 +1,5 @@
 import { CmsRoom, CmsImage, sanityImage } from "./sanity"
+import { localRoomPhoto, MIN_CMS_WIDTH } from "./room-photos"
 
 export type Room = {
 	id: string
@@ -79,12 +80,16 @@ export const toRoom = (cms: CmsRoom): Room => {
 	const numeric = /(\d[\d,]*(?:\.\d+)?)/.exec(cms.rate ?? "")
 	const price = numeric ? parseFloat(numeric[1].replace(/,/g, "")) : null
 	const details = DETAILS[(cms.name ?? "").trim().toLowerCase()]
+	// Prefer the studio's photograph once it is large enough to look sharp;
+	// until then use the bundled one (see room-photos.ts).
+	const cmsImage = sanityImage(cms.ref)
+	const image = cmsImage && cmsImage.width >= MIN_CMS_WIDTH ? cmsImage : localRoomPhoto(cms.name ?? "") ?? cmsImage
 	return {
 		id: cms._id,
 		name: (cms.name ?? "Untitled room").trim(),
 		price,
 		priceLabel: price !== null ? formatDollars(price) : cms.rate ?? "",
-		image: sanityImage(cms.ref),
+		image,
 		size: details?.size ?? null,
 		sleeps: details?.sleeps ?? null,
 		outlook: details?.outlook ?? null,
