@@ -34,6 +34,30 @@ npm install
 npm run dev
 ```
 
+## Deploying to Cloudflare
+
+The site runs as a Cloudflare Worker (named `sapphire-plaza`) through [OpenNext for Cloudflare](https://opennext.js.org/cloudflare), pinned to a release that supports Next 14. Setup is done in the Cloudflare dashboard; nothing needs running locally.
+
+1. **Create the cache bucket.** Dashboard → R2 → Create bucket, named exactly `sapphire-plaza-cache`. It holds the regenerated pages (the page revalidates every 10 minutes, so Sanity edits appear without a redeploy).
+2. **Connect the repository.** Workers & Pages → Create → Import a repository → this repo. Use the project/Worker name `sapphire-plaza` (it must match `name` in `wrangler.jsonc`) and set:
+
+   | Setting | Value |
+   | --- | --- |
+   | Production branch | `main` |
+   | Build command | `npx opennextjs-cloudflare build` |
+   | Deploy command | `npx opennextjs-cloudflare deploy` |
+   | Root directory | `/` |
+
+   No build variables are needed: Sanity is read from its public API and the EmailJS settings are in the source.
+3. **Point the domain.** Worker → Settings → Domains & routes → Add → Custom domain → `sapphire-plaza.elpis.cc` (the `elpis.cc` zone must be on this Cloudflare account). Remove any old DNS record for that name first, or the hostname will conflict.
+
+Things that will break the images if changed:
+
+- `wrangler.jsonc` must keep the `images` binding. Without it `/_next/image` serves the original, unoptimised files.
+- Every `quality={n}` used in the source, and the `q=` in `source/lib/room-photos.ts`, must be listed in `images.qualities` in `next.config.js`. The Worker answers any other quality with HTTP 400, which shows as a missing image.
+
+Preview the Worker build locally with `npm run preview`.
+
 ## Where things are
 
 | Path | What |
